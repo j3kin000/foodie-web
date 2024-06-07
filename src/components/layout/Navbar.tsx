@@ -42,19 +42,47 @@ const Navbar = (props: Props) => {
     await dispatch(setOpen(true));
   };
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <>
       <img src="/public/logo.svg" alt="" />
       <Divider />
-      <List>
+      <List sx={{ height: "100%" }}>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
+          <ListItem disablePadding>
+            <ListItemButton key={item} sx={{ textAlign: "center" }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem
+          disablePadding
+          sx={{
+            position: "absolute",
+            bottom: 0,
+          }}
+        >
+          <ListItemButton onClick={handleLoginOnClick}>
+            <ListItemText
+              primary={"Login / Signin"}
+              sx={{
+                color: theme.palette.primary.light,
+                pt: 1,
+                pb: 1,
+                textAlign: "center",
+                textTransform: "none",
+                backgroundColor: "#000",
+                borderRadius: "20px",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.main,
+                  borderColor: "#0062cc",
+                  boxShadow: "none",
+                  color: theme.palette.primary.light,
+                },
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
       </List>
-    </Box>
+    </>
   );
 
   const container =
@@ -100,15 +128,15 @@ const Navbar = (props: Props) => {
               <Button
                 key={item}
                 sx={{
+                  textTransform: "none",
+
                   color: "#000",
                   pr: { lg: 5 },
                   pl: { lg: 5 },
                   mr: { lg: 5 },
                   borderRadius: "20px",
                   "&:hover": {
-                    backgroundColor: "#FC8A06",
-                    borderColor: "#0062cc",
-                    boxShadow: "none",
+                    backgroundColor: theme.palette.primary.main,
                     color: theme.palette.primary.light,
                   },
                 }}
@@ -130,17 +158,18 @@ const Navbar = (props: Props) => {
                 pr: { lg: 5 },
                 pl: { lg: 5 },
                 mr: { lg: 5 },
+                textTransform: "none",
                 backgroundColor: "#000",
                 borderRadius: "20px",
                 "&:hover": {
-                  backgroundColor: "#FC8A06",
+                  backgroundColor: theme.palette.primary.main,
                   borderColor: "#0062cc",
                   boxShadow: "none",
                   color: theme.palette.primary.light,
                 },
               }}
             >
-              Login
+              Login / Signin
             </Button>
           </Box>
         </Toolbar>

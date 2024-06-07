@@ -13,8 +13,6 @@ import { LoginSchema } from "../schemas/login.schema";
 import { AccountCircle, Lock } from "@mui/icons-material";
 import { login } from "@services/auth.service";
 import { useState } from "react";
-import GenericModal from "src/components/GenericModal";
-import RegisterForm from "./RegisterForm";
 
 export interface Login {
   email: string;
@@ -26,11 +24,9 @@ const initialValues: Login = {
   password: "",
 };
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState(false);
-
   const handleSubmit = async (
     values: Login,
     action: FormikHelpers<typeof initialValues>
@@ -55,7 +51,7 @@ const LoginForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <Box>
           <Typography mb={5} variant="h5">
-            Login with Password
+            Register
           </Typography>
           {formik.errors.customError && (
             <Typography color={"red"} mt={1}>
@@ -173,7 +169,6 @@ const LoginForm = () => {
                 sx={{
                   textTransform: "none",
                 }}
-                onClick={() => setVisible(true)}
               >
                 Signup now
               </Typography>
@@ -181,12 +176,8 @@ const LoginForm = () => {
           </Box>
         </Box>
       </form>
-
-      <GenericModal visible={visible} setVisible={setVisible}>
-        <RegisterForm />
-      </GenericModal>
     </Box>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

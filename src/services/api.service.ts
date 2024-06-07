@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 
-const apiService = axios.create({});
+const baseURL = "http://localhost:3000/api";
+const apiService = axios.create({ baseURL });
 
 const handleInterceptorsError = (error: AxiosError) => {
   console.log("error", error.response);

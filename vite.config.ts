@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@features": "/src/features",
-      "@services": "/src/features",
+      "@services": "/src/services",
     },
   },
 });
