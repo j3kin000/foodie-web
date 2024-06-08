@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -18,22 +19,25 @@ type GenericModalProps = {
   children: React.ReactNode;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  disabledBackdropClick?: boolean;
 };
 const GenericModal: React.FC<GenericModalProps> = ({
   visible,
   setVisible,
   children,
+  disabledBackdropClick = false,
 }) => {
-  const handleClose = () => setVisible(false);
+  const handleClose = (
+    _event: any,
+    reason: "backdropClick" | "escapeKeyDown"
+  ) => {
+    if (disabledBackdropClick && reason && reason === "backdropClick") return;
+    setVisible(false);
+  };
 
   return (
     <div>
-      <Modal
-        open={visible}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={visible} onClose={handleClose} disableEnforceFocus>
         <Box sx={style}>{children}</Box>
       </Modal>
     </div>

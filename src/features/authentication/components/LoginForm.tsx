@@ -12,7 +12,7 @@ import { FormikHelpers, useFormik } from "formik";
 import { LoginSchema } from "../schemas/login.schema";
 import { AccountCircle, Lock } from "@mui/icons-material";
 import { login } from "@services/auth.service";
-import { useState } from "react";
+import { FC, useState } from "react";
 import GenericModal from "src/components/GenericModal";
 import RegisterForm from "./RegisterForm";
 
@@ -21,28 +21,33 @@ export interface Login {
   password: string;
   customError?: string;
 }
+type LoginFormProps = {
+  setDisabledBackdropClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
 const initialValues: Login = {
   email: "",
   password: "",
 };
 
-const LoginForm = () => {
+const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-
+  const [disabledBackdrop, setDisabledBackdrop] = useState(false);
   const handleSubmit = async (
     values: Login,
     action: FormikHelpers<typeof initialValues>
   ) => {
     try {
+      setDisabledBackdropClick(true);
       setLoading(true);
-      const response = await login(values.email, values.password);
+      const response = await login(values);
       console.log(response);
     } catch (error) {
       action.setFieldError("customError", "Invalid email or password");
     } finally {
       setLoading(false);
+      setDisabledBackdropClick(false);
     }
   };
   const formik = useFormik({
@@ -50,6 +55,7 @@ const LoginForm = () => {
     validationSchema: LoginSchema,
     onSubmit: handleSubmit,
   });
+
   return (
     <Box>
       <form onSubmit={formik.handleSubmit}>
@@ -103,6 +109,7 @@ const LoginForm = () => {
           >
             <FormLabel>Password</FormLabel>
             <TextField
+              type="password"
               variant="standard"
               fullWidth
               InputProps={{
@@ -128,7 +135,7 @@ const LoginForm = () => {
               </Typography>
             )}
           </FormControl>
-          <Box display={"flex"} justifyContent={"flex-end"} mb={2}>
+          {/* <Box display={"flex"} justifyContent={"flex-end"} mb={2}>
             <Typography
               color={theme.palette.primary.main}
               mt={1}
@@ -136,11 +143,12 @@ const LoginForm = () => {
               sx={{
                 textTransform: "none",
               }}
+              disabled={loading}
             >
               Forgot password?
             </Typography>
-          </Box>
-          <Box mb={4}>
+          </Box> */}
+          <Box mb={4} mt={4}>
             <Button
               fullWidth
               type="submit"
@@ -173,6 +181,7 @@ const LoginForm = () => {
                 sx={{
                   textTransform: "none",
                 }}
+                disabled={loading}
                 onClick={() => setVisible(true)}
               >
                 Signup now
@@ -182,8 +191,15 @@ const LoginForm = () => {
         </Box>
       </form>
 
-      <GenericModal visible={visible} setVisible={setVisible}>
-        <RegisterForm />
+      <GenericModal
+        visible={visible}
+        setVisible={setVisible}
+        disabledBackdropClick={disabledBackdrop}
+      >
+        <RegisterForm
+          setVisible={setVisible}
+          setDisabledBackdropClick={setDisabledBackdrop}
+        />
       </GenericModal>
     </Box>
   );
