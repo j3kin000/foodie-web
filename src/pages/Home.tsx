@@ -1,5 +1,6 @@
 import LoginForm from "@features/authentication/components/LoginForm";
-import { Box, Typography } from "@mui/material";
+import Header from "@features/dashboard/components/Header";
+import { Box } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import GenericModal from "src/components/GenericModal";
@@ -21,6 +22,7 @@ const Home = () => {
 
   return (
     <Box>
+      <Header />
       <GenericModal
         visible={isOpen}
         setVisible={setIsOpen}
