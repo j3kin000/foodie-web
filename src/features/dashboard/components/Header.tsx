@@ -1,5 +1,4 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React from "react";
 
 const Header = () => {
   const theme = useTheme();
@@ -8,8 +7,6 @@ const Header = () => {
 
   return (
     <Box
-      mr={smDown ? 0 : 5}
-      ml={smDown ? 0 : 5}
       sx={{
         border: "1px solid #E0E0E0",
         borderRadius: 2,
@@ -22,7 +19,7 @@ const Header = () => {
           flexDirection: "row",
           justifyContent: lgDown ? "center" : "space-between",
           overflow: "hidden",
-          pl: lgDown ? 1 : 20,
+          pl: lgDown ? 1 : 10,
           position: "relative", // Ensure relative positioning for the parent container
         }}
       >
@@ -82,20 +79,18 @@ const Header = () => {
             backgroundSize: "cover", // or "contain" depending on your needs
             backgroundRepeat: "no-repeat",
             height: "auto", // Set the height to fill the viewport or any specific height
-            zIndex: 1, // Lower z-index for background image
+            width: "40%",
+            pl: 20,
           }}
         >
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: 2,
-              pr: 30,
-              elevation: 1,
             }}
           >
-            <img src="/public/header-chat1.svg" alt="" style={{}} />
-            <img src="/public/header-chat2.svg" alt="" style={{}} />
+            <img src="/public/header-chat1.svg" alt="" />
+            <img src="/public/header-chat2.svg" alt="" />
             <img src="/public/header-chat3.svg" alt="" />
           </Box>
         </Box>

@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const baseURL = "http://localhost:3000/api";
-const apiService = axios.create({ baseURL });
+const apiService = axios.create({ baseURL, withCredentials: true }); // Set withCredentials to true
 
 const handleInterceptorsError = (error: AxiosError) => {
   console.log("error", error.response);

@@ -7,3 +7,8 @@ export const selectIsOpen = createSelector(
   [globalSelector],
   (global) => global.isOpen
 );
+
+export const selectAccessToken = createSelector(
+  [globalSelector],
+  (global) => global.accessToken
+);

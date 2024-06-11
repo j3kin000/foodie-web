@@ -3,6 +3,7 @@ import { GLOBAL_ACTION_TYPES } from "./global.types";
 
 const initialState = {
   isOpen: false,
+  accessToken: "",
 };
 
 export default (
@@ -17,6 +18,15 @@ export default (
       };
 
     case GLOBAL_ACTION_TYPES.SET_OPEN_FAILED:
+      return state;
+
+    case GLOBAL_ACTION_TYPES.SET_TOKEN_SUCCESS:
+      return {
+        ...state,
+        accessToken: action.payload,
+      };
+
+    case GLOBAL_ACTION_TYPES.SET_TOKEN_FAILED:
       return state;
 
     default:

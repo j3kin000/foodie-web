@@ -14,6 +14,9 @@ import { AccountCircle, Lock, Person } from "@mui/icons-material";
 import { register } from "@services/auth.service";
 import React, { FC, useState } from "react";
 import { toast } from "react-toastify";
+import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
+import { setUser } from "src/redux/user/user.action";
+import { setToken } from "src/redux/global/global.action";
 
 export interface Register {
   name: string;
@@ -38,6 +41,7 @@ const RegisterForm: FC<RegisterFormProps> = ({
   setDisabledBackdropClick,
 }) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (
     values: Register,
@@ -53,6 +57,8 @@ const RegisterForm: FC<RegisterFormProps> = ({
       };
       const response = await register(data);
       console.log(response);
+      await dispatch(setUser(data));
+      await dispatch(setToken(response.access_token));
       toast("Account Successfully Created!");
     } catch (error) {
       action.setFieldError("customError", "Invalid email or password");

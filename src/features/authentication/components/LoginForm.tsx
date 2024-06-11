@@ -15,6 +15,10 @@ import { login } from "@services/auth.service";
 import { FC, useState } from "react";
 import GenericModal from "src/components/GenericModal";
 import RegisterForm from "./RegisterForm";
+import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
+import { setUser } from "src/redux/user/user.action";
+import { setOpen, setToken } from "src/redux/global/global.action";
+import { toast } from "react-toastify";
 
 export interface Login {
   email: string;
@@ -31,6 +35,7 @@ const initialValues: Login = {
 
 const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [disabledBackdrop, setDisabledBackdrop] = useState(false);
@@ -43,6 +48,13 @@ const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
       setLoading(true);
       const response = await login(values);
       console.log(response);
+      const data = {
+        user: response.user,
+      };
+      await dispatch(setUser(data));
+      await dispatch(setToken(response.access_token));
+      await dispatch(setOpen(false));
+      toast(`Hello ${response.user.name}, welcome back!`);
     } catch (error) {
       action.setFieldError("customError", "Invalid email or password");
     } finally {

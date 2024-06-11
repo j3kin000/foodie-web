@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
@@ -11,12 +10,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material";
 import { PersonOutlined } from "@mui/icons-material";
-import { setOpen } from "src/redux/global/global.action";
+import { setOpen, setToken } from "src/redux/global/global.action";
 import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "src/redux/global/global.selector";
 
 interface Props {
   /**
@@ -30,6 +30,8 @@ const drawerWidth = 240;
 const navItems = ["Home", "Order", "Track Order"];
 
 const Navbar = (props: Props) => {
+  const accessToken = useSelector(selectAccessToken);
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
@@ -39,16 +41,24 @@ const Navbar = (props: Props) => {
   };
 
   const handleLoginOnClick = async () => {
-    await dispatch(setOpen(true));
+    if (accessToken) {
+      dispatch(setToken(""));
+    } else {
+      console.log("asd");
+      dispatch(setOpen(true));
+
+      // const { data } = await axios.get("http://localhost:5000/login");
+      // window.location.href = data.url;
+    }
   };
   const drawer = (
     <>
       <img src="/public/logo.svg" alt="" />
-      <Divider />
+      {/* <Divider /> */}
       <List sx={{ height: "100%" }}>
         {navItems.map((item) => (
-          <ListItem disablePadding>
-            <ListItemButton key={item} sx={{ textAlign: "center" }}>
+          <ListItem disablePadding key={item}>
+            <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -62,7 +72,7 @@ const Navbar = (props: Props) => {
         >
           <ListItemButton onClick={handleLoginOnClick}>
             <ListItemText
-              primary={"Login/Signin"}
+              primary={"Logout"}
               sx={{
                 color: theme.palette.primary.light,
                 pt: 1,
@@ -169,7 +179,7 @@ const Navbar = (props: Props) => {
                 },
               }}
             >
-              Login/Signin
+              {!accessToken ? "Login/Signin" : "Logout"}
             </Button>
           </Box>
         </Toolbar>
@@ -185,6 +195,7 @@ const Navbar = (props: Props) => {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
+            flexShrink: 0,
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
