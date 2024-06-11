@@ -50,13 +50,15 @@ const RegisterForm: FC<RegisterFormProps> = ({
     try {
       setDisabledBackdropClick(true);
       setLoading(true);
-      const data = {
+      const values = {
         name: values.name,
         email: values.email,
         password: values.password,
       };
-      const response = await register(data);
-      console.log(response);
+      const response = await register(values);
+      const data = {
+        user: response.user,
+      };
       await dispatch(setUser(data));
       await dispatch(setToken(response.access_token));
       toast("Account Successfully Created!");
