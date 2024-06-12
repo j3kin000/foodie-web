@@ -1,5 +1,5 @@
 import { Button, SxProps, Theme, useTheme } from "@mui/material";
-import React, { FC } from "react";
+import { FC } from "react";
 
 type CustomButtonProps = {
   loading?: boolean;
