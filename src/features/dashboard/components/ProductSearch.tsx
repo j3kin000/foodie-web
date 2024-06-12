@@ -1,10 +1,19 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { FC } from "react";
 import CustomButton from "src/components/CustomButton";
 import Searchbar from "src/components/Searchbar";
 
-const ProductSearch = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+const categoriesList = ["Meals", "Drinks", "Desserts", "Snacks", "All"];
+type ProductSearchProps = {
+  handleSetSearchQuery: (query: string) => void;
+  handleCategoriesOnClick: (category: string) => void;
+  category?: string;
+};
+const ProductSearch: FC<ProductSearchProps> = ({
+  handleSetSearchQuery,
+  handleCategoriesOnClick,
+  category,
+}) => {
   return (
     <Box
       mt={5}
@@ -18,35 +27,29 @@ const ProductSearch = () => {
       }}
     >
       <Box>
-        <Searchbar setSearchQuery={setSearchQuery} />
+        <Searchbar handleSetSearchQuery={handleSetSearchQuery} />
       </Box>
+
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
-          gap: 2,
+          gap: { xs: 1, sm: 2 },
         }}
       >
-        <CustomButton
-          text="Meals"
-          butonStyle={{ pr: 2, pl: 2, borderRadius: 20 }}
-          variant="outlined"
-        />
-        <CustomButton
-          text="Drinks"
-          butonStyle={{ pr: 2, pl: 2, borderRadius: 20 }}
-          variant="outlined"
-        />
-        <CustomButton
-          text="Desserts"
-          butonStyle={{ pr: 2, pl: 2, borderRadius: 20 }}
-          variant="outlined"
-        />
-        <CustomButton
-          text="Snacks"
-          butonStyle={{ pr: 2, pl: 2, borderRadius: 20 }}
-          variant="outlined"
-        />
+        {categoriesList.map((item, index) => (
+          <CustomButton
+            key={index}
+            text={item}
+            butonStyle={{
+              pr: { xs: 1, sm: 2 },
+              pl: { xs: 1, sm: 2 },
+              borderRadius: { xs: 10, sm: 20 },
+            }}
+            variant={category === item ? "contained" : "outlined"}
+            handleOnCLick={() => handleCategoriesOnClick(item)}
+          />
+        ))}
       </Box>
     </Box>
   );

@@ -19,6 +19,7 @@ import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
 import { setUser } from "src/redux/user/user.action";
 import { setOpen, setToken } from "src/redux/global/global.action";
 import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 export interface Login {
   email: string;
@@ -39,6 +40,7 @@ const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [disabledBackdrop, setDisabledBackdrop] = useState(false);
+
   const handleSubmit = async (
     values: Login,
     action: FormikHelpers<typeof initialValues>
@@ -56,12 +58,19 @@ const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
       await dispatch(setOpen(false));
       toast(`Hello ${response.user.name}, welcome back!`);
     } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError) {
+        if (axiosError.response?.status === 401) {
+          await dispatch(setToken(""));
+        }
+      }
       action.setFieldError("customError", "Invalid email or password");
     } finally {
       setLoading(false);
       setDisabledBackdropClick(false);
     }
   };
+
   const formik = useFormik({
     initialValues,
     validationSchema: LoginSchema,
@@ -147,19 +156,7 @@ const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
               </Typography>
             )}
           </FormControl>
-          {/* <Box display={"flex"} justifyContent={"flex-end"} mb={2}>
-            <Typography
-              color={theme.palette.primary.main}
-              mt={1}
-              component={Button}
-              sx={{
-                textTransform: "none",
-              }}
-              disabled={loading}
-            >
-              Forgot password?
-            </Typography>
-          </Box> */}
+
           <Box mb={4} mt={4}>
             <Button
               fullWidth

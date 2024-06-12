@@ -7,7 +7,7 @@ type CustomButtonProps = {
   type?: "button" | "submit" | "reset" | undefined;
   butonStyle?: SxProps<Theme> | undefined;
   variant?: "text" | "outlined" | "contained";
-  onClick?: () => void;
+  handleOnCLick?: () => void;
 };
 const CustomButton: FC<CustomButtonProps> = ({
   loading,
@@ -15,6 +15,7 @@ const CustomButton: FC<CustomButtonProps> = ({
   butonStyle,
   type = "button",
   variant = "contained",
+  handleOnCLick,
 }) => {
   const theme = useTheme();
   // Merge default and custom styles
@@ -36,6 +37,7 @@ const CustomButton: FC<CustomButtonProps> = ({
       size="large"
       disabled={loading}
       sx={buttonStyles}
+      onClick={handleOnCLick}
     >
       {loading ? "Loading..." : text}
     </Button>

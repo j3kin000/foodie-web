@@ -17,7 +17,7 @@ apiService.interceptors.request.use((request) => {
   return request;
 }, handleInterceptorsError);
 
-apiService.interceptors.response.use((response) => {
+apiService.interceptors.response.use(async (response) => {
   console.log("requestId", response.config.headers.requestId);
   console.log("response.headers", JSON.stringify(response.headers));
   console.log(

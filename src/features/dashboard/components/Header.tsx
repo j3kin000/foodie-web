@@ -10,6 +10,8 @@ const Header = () => {
       sx={{
         border: "1px solid #E0E0E0",
         borderRadius: 2,
+        // backgroundColor: "#03081F",
+        // color: "white",
         backgroundColor: "#FBFBFB",
       }}
     >

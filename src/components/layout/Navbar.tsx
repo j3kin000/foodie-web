@@ -17,6 +17,8 @@ import { setOpen, setToken } from "src/redux/global/global.action";
 import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
 import { useSelector } from "react-redux";
 import { selectAccessToken } from "src/redux/global/global.selector";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface Props {
   /**
@@ -27,11 +29,13 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "Order", "Track Order"];
+const navItems = ["Home", "Cart", "Track Order"];
 
 const Navbar = (props: Props) => {
+  const navigate = useNavigate();
   const accessToken = useSelector(selectAccessToken);
-
+  const path = document.location.pathname.substring(1);
+  const [onView, setOnView] = React.useState(path !== "" ? path : "home");
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const theme = useTheme();
@@ -50,6 +54,24 @@ const Navbar = (props: Props) => {
       // const { data } = await axios.get("http://localhost:5000/login");
       // window.location.href = data.url;
     }
+  };
+  const handleNavItemsOnClick = async (item: string) => {
+    if (accessToken) {
+      setOnView(item.replace(/\s/g, "").toLocaleLowerCase());
+      if (item === "Home") {
+        navigate(`/`);
+        return;
+      } else {
+        navigate(`/${item.replace(/\s/g, "").toLocaleLowerCase()}`);
+      }
+      return;
+    } else if (item === "Home") {
+      console.log("asd");
+      navigate(`/`);
+      setOnView(item.replace(/\s/g, "").toLocaleLowerCase());
+      return;
+    }
+    toast.warn("You need to login first to access this feature.");
   };
   const drawer = (
     <>
@@ -134,26 +156,37 @@ const Navbar = (props: Props) => {
               flexWrap: "wrap",
             }}
           >
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  textTransform: "none",
-
-                  color: "#000",
-                  pr: { lg: 5 },
-                  pl: { lg: 5 },
-                  mr: { lg: 5 },
-                  borderRadius: "20px",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.primary.light,
-                  },
-                }}
-              >
-                {item}
-              </Button>
-            ))}
+            {navItems.map((item) => {
+              console.log("onView", onView);
+              console.log("itemn", item.replace(/\s/g, "").toLocaleLowerCase());
+              return (
+                <Button
+                  key={item}
+                  sx={{
+                    textTransform: "none",
+                    backgroundColor:
+                      onView === item.replace(/\s/g, "").toLocaleLowerCase()
+                        ? theme.palette.primary.main
+                        : "#FFF",
+                    color:
+                      onView === item.replace(/\s/g, "").toLocaleLowerCase()
+                        ? "#FFF"
+                        : "#000",
+                    pr: { lg: 5 },
+                    pl: { lg: 5 },
+                    mr: { lg: 5 },
+                    borderRadius: "20px",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.primary.light,
+                    },
+                  }}
+                  onClick={() => handleNavItemsOnClick(item)}
+                >
+                  {item}
+                </Button>
+              );
+            })}
             <Button
               startIcon={
                 <PersonOutlined

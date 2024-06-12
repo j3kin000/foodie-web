@@ -16,7 +16,8 @@ import React, { FC, useState } from "react";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
 import { setUser } from "src/redux/user/user.action";
-import { setToken } from "src/redux/global/global.action";
+import { setOpen, setToken } from "src/redux/global/global.action";
+import { AxiosError } from "axios";
 
 export interface Register {
   name: string;
@@ -50,19 +51,27 @@ const RegisterForm: FC<RegisterFormProps> = ({
     try {
       setDisabledBackdropClick(true);
       setLoading(true);
-      const values = {
+      const val = {
         name: values.name,
         email: values.email,
         password: values.password,
       };
-      const response = await register(values);
+      const response = await register(val);
       const data = {
         user: response.user,
       };
       await dispatch(setUser(data));
       await dispatch(setToken(response.access_token));
+      dispatch(setOpen(false));
       toast("Account Successfully Created!");
     } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError) {
+        if (axiosError.response?.status === 401) {
+          await dispatch(setToken(""));
+        }
+      }
+
       action.setFieldError("customError", "Invalid email or password");
     } finally {
       setLoading(false);

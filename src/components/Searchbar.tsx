@@ -1,11 +1,11 @@
 import { Search } from "@mui/icons-material";
 import { IconButton, InputBase, Paper } from "@mui/material";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 
 type SearchbarProps = {
-  setSearchQuery: Dispatch<SetStateAction<string>>;
+  handleSetSearchQuery: (query: string) => void;
 };
-const Searchbar: FC<SearchbarProps> = ({ setSearchQuery }) => (
+const Searchbar: FC<SearchbarProps> = ({ handleSetSearchQuery }) => (
   <Paper
     component="form"
     sx={{
@@ -23,7 +23,7 @@ const Searchbar: FC<SearchbarProps> = ({ setSearchQuery }) => (
       sx={{ ml: 1, flex: 1 }}
       placeholder="Search from menu"
       onChange={(e) => {
-        setSearchQuery(e.target.value);
+        handleSetSearchQuery(e.target.value);
       }}
     />
   </Paper>

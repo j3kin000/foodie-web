@@ -10,6 +10,6 @@ export const register = async (values: {
   email: string;
   password: string;
 }) => {
-  const response = await apiService.post("/auth/login", values);
+  const response = await apiService.post("/auth/register", values);
   return response.data;
 };
