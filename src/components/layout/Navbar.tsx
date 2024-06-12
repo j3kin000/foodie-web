@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { useTheme } from "@mui/material";
+import { Divider, useTheme } from "@mui/material";
 import { PersonOutlined } from "@mui/icons-material";
 import { setOpen, setToken } from "src/redux/global/global.action";
 import { useAppDispatch } from "src/utils/reducer/reducerHook.utils";
@@ -70,12 +70,21 @@ const Navbar = (props: Props) => {
   };
   const drawer = (
     <>
-      <img src="/logo.svg" alt="" />
-      {/* <Divider /> */}
+      <img
+        src="/logo.svg"
+        alt=""
+        style={{
+          alignSelf: "center",
+        }}
+      />
+      <Divider />
       <List sx={{ height: "100%" }}>
         {navItems.map((item) => (
           <ListItem disablePadding key={item}>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => handleNavItemsOnClick(item)}
+            >
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
