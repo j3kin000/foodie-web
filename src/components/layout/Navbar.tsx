@@ -70,7 +70,7 @@ const Navbar = (props: Props) => {
   };
   const drawer = (
     <>
-      <img src="/public/logo.svg" alt="" />
+      <img src="/logo.svg" alt="" />
       {/* <Divider /> */}
       <List sx={{ height: "100%" }}>
         {navItems.map((item) => (
@@ -142,7 +142,7 @@ const Navbar = (props: Props) => {
               display: { xs: "none", sm: "block" },
             }}
           >
-            <img src="/public/logo.svg" alt="asd" />
+            <img src="/logo.svg" alt="asd" />
           </Box>
 
           <Box

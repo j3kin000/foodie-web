@@ -9,7 +9,7 @@ export const productsList: Product[] = [
     description: "Delicious and filling meal with a double cheese burger.",
     quantity: 5,
     price: 29.99,
-    prodImg: "/public/food_1.png",
+    prodImg: "/food_1.png",
     status: "available",
   },
   {
@@ -18,7 +18,7 @@ export const productsList: Product[] = [
     description: "A mix of crispy fries and a juicy chicken sandwich.",
     quantity: 8,
     price: 15.49,
-    prodImg: "/public/food_2.png",
+    prodImg: "/food_2.png",
     status: "unavailable",
   },
   {
@@ -27,7 +27,7 @@ export const productsList: Product[] = [
     description: "A refreshing drink to complement your meal.",
     quantity: 3,
     price: 4.99,
-    prodImg: "/public/food_3.png",
+    prodImg: "/food_3.png",
     status: "available",
   },
   {
@@ -36,7 +36,7 @@ export const productsList: Product[] = [
     description: "Sweet and tasty dessert to end your meal.",
     quantity: 7,
     price: 6.49,
-    prodImg: "/public/food_4.png",
+    prodImg: "/food_4.png",
     status: "available",
   },
   {
@@ -45,7 +45,7 @@ export const productsList: Product[] = [
     description: "A hearty meal with a grilled chicken wrap and extra fries.",
     quantity: 2,
     price: 34.99,
-    prodImg: "/public/food_5.png",
+    prodImg: "/food_5.png",
     status: "unavailable",
   },
   {
@@ -54,7 +54,7 @@ export const productsList: Product[] = [
     description: "Light and tasty snacks for a quick bite.",
     quantity: 10,
     price: 12.49,
-    prodImg: "/public/food_6.png",
+    prodImg: "/food_6.png",
     status: "available",
   },
   {
@@ -63,7 +63,7 @@ export const productsList: Product[] = [
     description: "Cool and refreshing beverages.",
     quantity: 6,
     price: 8.99,
-    prodImg: "/public/food_7.png",
+    prodImg: "/food_7.png",
     status: "available",
   },
   {
@@ -72,7 +72,7 @@ export const productsList: Product[] = [
     description: "Delicious dessert to satisfy your sweet tooth.",
     quantity: 4,
     price: 5.99,
-    prodImg: "/public/food_8.png",
+    prodImg: "/food_8.png",
     status: "unavailable",
   },
   {
@@ -81,7 +81,7 @@ export const productsList: Product[] = [
     description: "A fulfilling meal with a fish and chips.",
     quantity: 3,
     price: 27.49,
-    prodImg: "/public/food_9.png",
+    prodImg: "/food_9.png",
     status: "available",
   },
   {
@@ -90,7 +90,7 @@ export const productsList: Product[] = [
     description: "A variety of tasty snacks.",
     quantity: 9,
     price: 14.99,
-    prodImg: "/public/food_10.png",
+    prodImg: "/food_10.png",
     status: "available",
   },
   {
@@ -99,7 +99,7 @@ export const productsList: Product[] = [
     description: "Refreshing drinks for any meal.",
     quantity: 5,
     price: 3.99,
-    prodImg: "/public/food_11.png",
+    prodImg: "/food_11.png",
     status: "unavailable",
   },
   {
@@ -108,7 +108,7 @@ export const productsList: Product[] = [
     description: "Sweet treats to finish your meal.",
     quantity: 2,
     price: 6.99,
-    prodImg: "/public/food_12.png",
+    prodImg: "/food_12.png",
     status: "available",
   },
   {
@@ -117,7 +117,7 @@ export const productsList: Product[] = [
     description: "A delicious meal with a smoothie.",
     quantity: 7,
     price: 32.99,
-    prodImg: "/public/food_13.png",
+    prodImg: "/food_13.png",
     status: "available",
   },
   {
@@ -126,7 +126,7 @@ export const productsList: Product[] = [
     description: "A mix of fries and a caramel latte.",
     quantity: 4,
     price: 18.49,
-    prodImg: "/public/food_14.png",
+    prodImg: "/food_14.png",
     status: "unavailable",
   },
   {
@@ -135,7 +135,7 @@ export const productsList: Product[] = [
     description: "Cool drinks to refresh your palate.",
     quantity: 6,
     price: 5.49,
-    prodImg: "/public/food_15.png",
+    prodImg: "/food_15.png",
     status: "available",
   },
   {
@@ -144,7 +144,7 @@ export const productsList: Product[] = [
     description: "A tasty dessert to top off your meal.",
     quantity: 8,
     price: 4.49,
-    prodImg: "/public/food_16.png",
+    prodImg: "/food_16.png",
     status: "available",
   },
   {
@@ -153,7 +153,7 @@ export const productsList: Product[] = [
     description: "A complete meal with garlic bread.",
     quantity: 3,
     price: 25.99,
-    prodImg: "/public/food_17.png",
+    prodImg: "/food_17.png",
     status: "unavailable",
   },
   {
@@ -162,7 +162,7 @@ export const productsList: Product[] = [
     description: "Quick and tasty snacks.",
     quantity: 10,
     price: 11.99,
-    prodImg: "/public/food_18.png",
+    prodImg: "/food_18.png",
     status: "available",
   },
   {
@@ -171,7 +171,7 @@ export const productsList: Product[] = [
     description: "Refreshing beverages for your meal.",
     quantity: 5,
     price: 4.99,
-    prodImg: "/public/food_19.png",
+    prodImg: "/food_19.png",
     status: "available",
   },
   {
@@ -180,7 +180,7 @@ export const productsList: Product[] = [
     description: "Sweet desserts to enjoy.",
     quantity: 6,
     price: 5.99,
-    prodImg: "/public/food_20.png",
+    prodImg: "/food_20.png",
     status: "unavailable",
   },
   {
@@ -189,7 +189,7 @@ export const productsList: Product[] = [
     description: "A delightful meal with a club sandwich.",
     quantity: 2,
     price: 35.49,
-    prodImg: "/public/food_21.png",
+    prodImg: "/food_21.png",
     status: "available",
   },
   {
@@ -198,7 +198,7 @@ export const productsList: Product[] = [
     description: "Delicious snacks to munch on.",
     quantity: 7,
     price: 12.49,
-    prodImg: "/public/food_22.png",
+    prodImg: "/food_22.png",
     status: "available",
   },
   {
@@ -207,7 +207,7 @@ export const productsList: Product[] = [
     description: "Cool drinks to accompany your meal.",
     quantity: 4,
     price: 5.99,
-    prodImg: "/public/food_23.png",
+    prodImg: "/food_23.png",
     status: "unavailable",
   },
   {
@@ -216,7 +216,7 @@ export const productsList: Product[] = [
     description: "Tasty desserts to finish off your meal.",
     quantity: 6,
     price: 6.49,
-    prodImg: "/public/food_24.png",
+    prodImg: "/food_24.png",
     status: "available",
   },
 ];

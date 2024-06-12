@@ -63,7 +63,7 @@ const Header = () => {
           </Box>
         </Box>
         <img
-          src="/public/header-people.svg"
+          src="/header-people.svg"
           alt=""
           height={"100%"}
           style={{
@@ -77,7 +77,7 @@ const Header = () => {
         <Box
           sx={{
             display: lgDown ? "none" : "flex",
-            backgroundImage: 'url("/public/header-bg.svg")',
+            backgroundImage: 'url("/header-bg.svg")',
             backgroundSize: "cover", // or "contain" depending on your needs
             backgroundRepeat: "no-repeat",
             height: "auto", // Set the height to fill the viewport or any specific height
@@ -91,9 +91,9 @@ const Header = () => {
               flexDirection: "column",
             }}
           >
-            <img src="/public/header-chat1.svg" alt="" />
-            <img src="/public/header-chat2.svg" alt="" />
-            <img src="/public/header-chat3.svg" alt="" />
+            <img src="/header-chat1.svg" alt="" />
+            <img src="/header-chat2.svg" alt="" />
+            <img src="/header-chat3.svg" alt="" />
           </Box>
         </Box>
       </Box>
