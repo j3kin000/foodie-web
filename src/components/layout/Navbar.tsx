@@ -48,11 +48,7 @@ const Navbar = (props: Props) => {
     if (accessToken) {
       dispatch(setToken(""));
     } else {
-      console.log("asd");
       dispatch(setOpen(true));
-
-      // const { data } = await axios.get("http://localhost:5000/login");
-      // window.location.href = data.url;
     }
   };
   const handleNavItemsOnClick = async (item: string) => {
@@ -66,7 +62,6 @@ const Navbar = (props: Props) => {
       }
       return;
     } else if (item === "Home") {
-      console.log("asd");
       navigate(`/`);
       setOnView(item.replace(/\s/g, "").toLocaleLowerCase());
       return;
@@ -157,8 +152,6 @@ const Navbar = (props: Props) => {
             }}
           >
             {navItems.map((item) => {
-              console.log("onView", onView);
-              console.log("itemn", item.replace(/\s/g, "").toLocaleLowerCase());
               return (
                 <Button
                   key={item}

@@ -7,7 +7,6 @@ export const ProtectedRoute: React.FC<{ element: React.ReactNode }> = ({
   element,
 }) => {
   const accessToken = useSelector(selectAccessToken);
-  console.log("PROTECTED RTOUTES", accessToken);
   if (accessToken === "") {
     return <Navigate to="/" />;
   }

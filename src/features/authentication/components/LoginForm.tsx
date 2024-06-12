@@ -49,7 +49,6 @@ const LoginForm: FC<LoginFormProps> = ({ setDisabledBackdropClick }) => {
       setDisabledBackdropClick(true);
       setLoading(true);
       const response = await login(values);
-      console.log(response);
       const data = {
         user: response.user,
       };

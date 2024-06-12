@@ -20,7 +20,6 @@ export const useProductFilter = (products: Product[]) => {
 
   const handleCategoriesOnClick = (category: string) => {
     setCategory(category);
-    console.log("category", category);
     if (category === "All") {
       setProductFilter(products);
     } else {
