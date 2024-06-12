@@ -1,6 +1,9 @@
 import axios, { AxiosError } from "axios";
 
-const baseURL = "http://localhost:3000/api";
+const baseURL =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_BASE_URL_PROD
+    : process.env.REACT_APP_BASE_URL_DEV;
 const apiService = axios.create({ baseURL, withCredentials: true }); // Set withCredentials to true
 
 const handleInterceptorsError = (error: AxiosError) => {
